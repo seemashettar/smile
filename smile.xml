@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluginApp xmlns="http://pspi.magic.ubc.ca"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pspi.magic.ubc.ca application.xsd">
+           
+    <applicationName>Smile App</applicationName>
+    <applicationShortName>hello</applicationShortName>
+    <applicationImageURL>http://localhost/smile/large/smile.png</applicationImageURL>
+    <minumumIdleTime>20</minumumIdleTime>
+    
+    <applicationDescription>This application is for encouraging people to smile!</applicationDescription>
+    <interactionInstructions>Will be provided later.
+</interactionInstructions>
+    
+    <connectionInfo applicationType="web" useFullScreen="false">
+        <topic>smile</topic>
+        <displayURL>http://localhost/smile/large/index.html</displayURL>
+        <connectorClass>ca.ubc.magic.coffeeshop.connectors.DefaultConnector</connectorClass>
+    </connectionInfo>
+    
+</pluginApp>
+
