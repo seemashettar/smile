@@ -1,0 +1,10 @@
+first you need to subscribe on the smile application using the URL below
+http://localhost:8800/osgibroker/subscribe?topic=smile&clientID=smile
+
+to trigger different event use the following options
+http://localhost:8800/osgibroker/event?topic=hello&clientID=hello&_method=POST&eventName=comparison
+
+http://localhost:8800/osgibroker/event?topic=hello&clientID=hello&_method=POST&eventName=happy
+
+http://localhost:8800/osgibroker/event?topic=hello&clientID=hello&_method=POST&eventName=sad
+
