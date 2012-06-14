@@ -1,0 +1,8 @@
+Start the osgibroker
+cd osgibroke 
+./start.sh
+
+
+http://localhost:8080/CoffeeShop/client/vieweditapp.jsf
+http://localhost:8080/CoffeeShop/client/select.jsf
+http://localhost:8080/CoffeeShop/

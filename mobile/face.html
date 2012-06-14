@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>img{ height: 100px; float: left; }</style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div id="images">
+</div>
+<script>
+
+$.getJSON("http://api.face.com/faces/detect.json?callback=?",
+  {
+	urls: "http://www.snooperz.com/files/images/angry-face-baby.jpg",
+	api_key: "65d1f286b1aef896852b7ffbdbeedcbb",
+	api_secret: "d39d306a5c9bc99690bd47b5761726c8",
+	detector: "Aggressive",
+	attributes: "all"
+  },
+  function(data) {
+    $.each(data.photos, function(i,item){
+	console.log(item.tags[0].attributes.mood.value);      
+    });
+  });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>img{ height: 100px; float: left; }</style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div id="images">
+</div>
+<script>
+
+$.getJSON("face.php?jsoncallback=?",
+  {
+	urls: "https://fbcdn-sphotos-a.akamaihd.net/hphotos-ak-snc6/198341_923807236679_762591314_n.jpg"
+  },
+  function(data) {
+    $.each(data.photos, function(i,item){
+	console.log(item.tags[0].attributes.mood.value);      
+    });
+  });</script>
+
+</body>
+</html>
