@@ -46,6 +46,8 @@ if($info['mime'] != 'image/jpeg'){
 rename($original,'uploads/original/'.$filename);
 $original = 'uploads/original/'.$filename;
 
+chmod($original, 0755);	
+
 // Using the GD library to resize 
 // the image into a thumbnail:
 
@@ -54,6 +56,8 @@ $newImage	= imagecreatetruecolor(154,110);
 imagecopyresampled($newImage,$origImage,0,0,0,0,154,110,520,370); 
 
 imagejpeg($newImage,'uploads/thumbs/'.$filename);
+chmod('uploads/thumbs/'.$filename, 0755);	
+
 echo '{"status":1,"message":"Success!","filename":"'.$filename.'", "original":"'.getcurrentaddr().$original.'"}';
 
 
