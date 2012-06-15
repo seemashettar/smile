@@ -38,7 +38,7 @@ if( isset($_POST['login']) ){
 	header("Location: takepic/");
 }
 
-if( isset($_GET['addemotion']) ){
+if( isset($_GET['emotion']) ){
 	$result = 0;
 	if(!isset($_SESSION["login"])) die("please login first!");
 
@@ -54,9 +54,8 @@ if( isset($_GET['addemotion']) ){
 	}	
 	$query .= "'".date("Y-m-d H:i:s")."'";
 	$query .= ");";	
-	echo $query;
 	$result = mysqli_query($link, $query);
-	if(!result) echo "not:";
+	if(!result) echo "{'message':'error with database'}";
 }
 
 if (isset($_POST['profile_upload_pic'])) {
