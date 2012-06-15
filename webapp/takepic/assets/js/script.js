@@ -113,7 +113,7 @@ $(document).ready(function(){
 		else {
 			// Adding it to the page;
 			console.log(msg.original);
-			//useFaceAPI(msg.original);
+			useFaceAPI(msg.original);
 			photos.prepend(templateReplace(template,{src:msg.filename}));
 			initFancyBox();
 		}
@@ -128,16 +128,40 @@ $(document).ready(function(){
 	-------------------------------------*/	
 	function useFaceAPI(picURL){
 		console.log("sending the picurl");
-		$.getJSON("face.php?jsoncallback=?",
+		$.getJSON("http://api.face.com/faces/detect.json?callback=?",
 		  {
-			urls: picURL
+            urls: picURL,
+            api_key: "65d1f286b1aef896852b7ffbdbeedcbb",
+            api_secret: "d39d306a5c9bc99690bd47b5761726c8",
+            detector: "Aggressive",
+            attributes: "all"
 		  },
 		  function(data) {
 		    $.each(data.photos, function(i,item){
-			console.log(item.tags[0].attributes.mood.value);      
+                try
+                {
+                    console.log(item.tags[0].attributes.mood.value);
+                    saveFaceOutput(item.tags[0].attributes.mood.value);
+                }
+                catch(error)
+                {
+                    console.log(error);
+                }
+
 		    });
 		  });
 	}
+
+    function saveFaceOutput(emotion)
+    {    
+		$.getJSON("../process.php",
+		  {
+            emotion : emotion
+		  },
+		  function(data) {
+		    console.log(data);
+          });
+    }
 
 	function useFace(filename){
 /*		var data = canvas.toDataURL('image/jpeg', 1.0);

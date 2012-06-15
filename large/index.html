@@ -22,23 +22,29 @@
 		switch($(this).find("eventName").text())
 		{
 		case "happy":
-		  $("#messageboard").html("Happy: 5");
+		  getstats("happy");
 		  break;
 		case "sad":
-		  $("#messageboard").html("Sad: 3");
+		  getstats("sad");
 		  break;
 		case "comparison":
-		  $("#messageboard").html("Happy: 5 || Sad: 3");
+		  getstats("comp");
 		  break;
 		default:
 		  $("#messageboard").html("Please select Sad, Happy or Comparison");
 		}
     	});
-
-        //if ($(".messages").find('div').length > 4 ){
-	//  $(".messages").find('div').slice(0,1).remove();
-	//}
     }
+
+	function getstats(emotion){
+
+		$.getJSON("../webapp/process.php?stats", function(data) 
+			{ 
+				if(emotion == "happy") 		{ $("#messageboard").html("Happy: "+data.happy); }
+				else if(emotion == "sad") 	{ $("#messageboard").html("Sad: "+data.sad); }
+				else 				{ $("#messageboard").html("Happy: "+data.happy+" || Sad: "+data.sad); }
+		});
+	}
   </script>
 
   </head>

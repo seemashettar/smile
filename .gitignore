@@ -1,3 +1,5 @@
 *original/*.jpg
 *thumbs/*.jpg
 *~
+webapp/takepic/uploads/original/*
+webapp/takepic/uploads/thumbs/*

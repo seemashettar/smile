@@ -38,9 +38,9 @@ if( isset($_POST['login']) ){
 	header("Location: takepic/");
 }
 
-if( isset($_GET['addemotion']) ){
+if( isset($_GET['emotion']) ){
 	$result = 0;
-	if(!isset($_SESSION["login"])) die("please login first!");
+	if(!isset($_SESSION["login"]["id"])) die("{'message':'authorization error'}");
 
 	$query = "INSERT INTO tavakoli.smile_profile (username,happy, timestamp) VALUES (";
 	$query .= "'".mysqli_real_escape_string($link, $_SESSION["login"]["username"])."',";
@@ -54,10 +54,31 @@ if( isset($_GET['addemotion']) ){
 	}	
 	$query .= "'".date("Y-m-d H:i:s")."'";
 	$query .= ");";	
-	echo $query;
 	$result = mysqli_query($link, $query);
-	if(!result) echo "not:";
+	if(!result) echo "{'message':'error with database'}";
 }
+
+
+if ( isset( $_GET['stats'] ) ) 
+{
+	if(!isset($_SESSION["login"]["id"])) die("{'message':'authorization error'}");
+
+	$query = "SELECT COUNT(happy) as happy FROM `tavakoli`.`smile_profile` WHERE happy=1;";	
+	$result = mysqli_query($link, $query);
+	$result_fetch =  mysqli_fetch_assoc($result);
+	$happy = $result_fetch['happy'];
+	$query = "SELECT COUNT(happy) as happy FROM `tavakoli`.`smile_profile` WHERE happy=0;";	
+	$result = mysqli_query($link, $query);
+	$result_fetch =  mysqli_fetch_assoc($result);
+	$sad = $result_fetch['happy'];
+	echo "{\"happy\":\"$happy\",\"sad\":\"$sad\"}";
+	//unlink($result_fetch["picture"]);
+
+	//$query = "DELETE FROM a4_person WHERE per_id = ".mysqli_real_escape_string($link, $_GET['profileid']);
+	//$result = mysqli_query($link, $query);
+	//header ('Location: members.php');
+}
+
 
 if (isset($_POST['profile_upload_pic'])) {
 	if(!isset($_SESSION["login"]["id"]))
