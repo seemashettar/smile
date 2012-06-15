@@ -56,7 +56,6 @@ if( isset($_GET['emotion']) ){
 	$query .= ");";	
 	$result = mysqli_query($link, $query);
 	if(!result) echo "{'message':'error with database'}";
-<<<<<<< HEAD
 }
 
 
@@ -78,8 +77,6 @@ if ( isset( $_GET['stats'] ) )
 	//$query = "DELETE FROM a4_person WHERE per_id = ".mysqli_real_escape_string($link, $_GET['profileid']);
 	//$result = mysqli_query($link, $query);
 	//header ('Location: members.php');
-=======
->>>>>>> 89e67987f249a566d97e22d9f3694ce3f27d8cd6
 }
 
 
