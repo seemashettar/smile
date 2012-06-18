@@ -17,7 +17,6 @@
     //using this parser we will get the events and add them to the DOM
     function messageParser(xml) {
 	$(xml).find("event").each(function () {
-	  //$(".messages").append('<div class="message">' + $(this).find("eventName").text() + '</div>');
 		//handle different events		
 		switch($(this).find("eventName").text())
 		{
