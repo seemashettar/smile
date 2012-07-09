@@ -24,13 +24,16 @@
             </div>
             <div data-role="content" style="padding: 15px">
                 <a id="test1" class="appbutton" data-role="button" data-ajax="false" data-transition="fade" data-theme="e" value="happy">
-                    Happy
+                    Happy Weekdays
                 </a>
                 <a class="appbutton" data-role="button" data-transition="fade" data-theme="b" value="sad">
-                    Sad
+                    Sad Weekdays
+                </a>
+                <a class="appbutton" data-role="button" data-transition="fade" data-theme="e" value="weekdaysadhappy">
+                    Weekday Happy vs Sad
                 </a>
                 <a class="appbutton" data-role="button" data-transition="fade" data-theme="a" value="comparison">
-                    Comparison
+                    Overall Comparison
                 </a>
 		<div id="resultLog"></div>
             </div>
@@ -53,12 +56,13 @@
 	      $("#resultLog").ajaxError(function(event, request, settings, exception) {
               $("#resultLog").html("Error Calling: " + settings.url + "<br />HTPP Code: " + request.status);
             });
- 
+ /*
             function onSuccess(data)
             {
                 $("#resultLog").html("Command Sent: " + data);
             }
-        });
+*/   
+     });
         </script>
     </body>
 </html>

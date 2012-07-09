@@ -65,11 +65,42 @@ if ( isset( $_GET['stats'] ) )
 	$result = mysqli_query($link, $query);
 	$result_fetch =  mysqli_fetch_assoc($result);
 	$happy = $result_fetch['happy'];
+
 	$query = "SELECT COUNT(happy) as happy FROM `tavakoli`.`smile_profile` WHERE happy=0;";	
 	$result = mysqli_query($link, $query);
 	$result_fetch =  mysqli_fetch_assoc($result);
 	$sad = $result_fetch['happy'];
-	echo "{\"happy\":\"$happy\",\"sad\":\"$sad\"}";
+
+	$query = "SELECT DAYNAME( `timestamp` ) AS edate, COUNT(*) as count FROM `tavakoli`.`smile_profile` WHERE happy=0 GROUP BY edate;";	
+	$result = mysqli_query($link, $query);
+	$ticksSad = "[";
+	$statsSad = "[";
+	while($row = mysqli_fetch_assoc($result)){
+		$ticksSad .= "\"".$row['edate']."\","; 
+		$statsSad .= $row['count'].","; 
+	}
+	$ticksSad = substr($ticksSad,0,-1);
+	$ticksSad .= "]";
+
+	$statsSad = substr($statsSad,0,-1);
+	$statsSad .= "]";
+
+	$query = "SELECT DAYNAME( `timestamp` ) AS edate, COUNT(*) as count FROM `tavakoli`.`smile_profile` WHERE happy=1 GROUP BY edate;";	
+	$result = mysqli_query($link, $query);
+	$ticksHappy = "[";
+	$statsHappy = "[";
+	while($row = mysqli_fetch_assoc($result)){
+		$ticksHappy .= "\"".$row['edate']."\","; 
+		$statsHappy .= $row['count'].","; 
+	}
+	$ticksHappy = substr($ticksHappy,0,-1);
+	$ticksHappy .= "]";
+
+	$statsHappy = substr($statsHappy,0,-1);
+	$statsHappy .= "]";
+
+	echo "{\"happy\":\"$happy\",\"sad\":\"$sad\",\"ticksad\":$ticksSad,\"statsad\":$statsSad,\"tickhappy\":$ticksHappy,\"stathappy\":$statsHappy}";
+
 }
 
 

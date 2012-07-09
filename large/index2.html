@@ -1,0 +1,55 @@
+<html>
+  <head>
+   
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+	 //subscribe the hello application to the hello topic
+   	 $.ajax({ type: "GET", url: "subscribe.php", dataType: "xml", success: messageParser });
+	 
+         //retreive events and parse them.
+         setInterval(function () {
+	   $.ajax({ type: "GET", url: "event.php", dataType: "xml", success: messageParser });		
+         }, 2000);
+      });
+
+    //using this parser we will get the events and add them to the DOM
+    function messageParser(xml) {
+	$(xml).find("event").each(function () {
+		//handle different events		
+		switch($(this).find("eventName").text())
+		{
+		case "happy":
+		  getstats("happy");
+		  break;
+		case "sad":
+		  getstats("sad");
+		  break;
+		case "comparison":
+		  getstats("comp");
+		  break;
+		default:
+		  $("#messageboard").html("Please select Sad, Happy or Comparison");
+		}
+    	});
+    }
+
+	function getstats(emotion){
+
+		$.getJSON("../webapp/process.php?stats", function(data) 
+			{ 
+				if(emotion == "happy") 		{ $("#messageboard").html("Happy: "+data.happy); }
+				else if(emotion == "sad") 	{ $("#messageboard").html("Sad: "+data.sad); }
+				else 				{ $("#messageboard").html("Happy: "+data.happy+" || Sad: "+data.sad); }
+		});
+	}
+  </script>
+
+  </head>
+  <body>
+Smile Statistics Analysis 
+  
+<div id="messageboard"><div class="messages"><div class="message">...</div></div> </div>	
+  </body>
+</html>
