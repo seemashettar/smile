@@ -5,7 +5,7 @@ $ini_array = parse_ini_file("../settings.ini");
 $osgibroker_url = $ini_array['server_url'];
 
 $daurl = "$osgibroker_url/osgibroker/event?topic=smile&clientID=smile&timeOut=1";
-
+//echo $daurl;
 // Get that website's content
 $handle = fopen($daurl, "r");
 
