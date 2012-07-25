@@ -1,16 +1,13 @@
 <?php
 
-#
-# INCLUDED CODE
-#
-# These values will be available in the index.php script because this file (config.php)
-# has been included using the require_once() function.
-#
+// Parse without sections
+$ini_array = parse_ini_file("../settings.ini");
+//print_r($ini_array);
 
-$db_host = 'db.cs.dal.ca';
-$db_user = 'tavakoli';					# This will be your CS username
-$db_pass = 'B00460600';					# This will be your BannerID by default
-$db_name = 'tavakoli';   				# This will be your CS username
+$db_host = $ini_array['db_host'];
+$db_user = $ini_array['db_user'];					
+$db_pass = $ini_array['db_pass'];					
+$db_name = $ini_array['db_name'];   				
 
 
 ?>

@@ -127,22 +127,22 @@
 				if(emotion == "happy") 		
 				{ 
 					$("#messageboard h1").html("Happy weekday analysis "); 
-					barPlot("chart", [data.stathappy], data.tickhappy);
+					barPlot("chart", [data.stathappy], data.tickhappy, [{label:'Happy'}]);
 				}
 				else if(emotion == "sad") 	
 				{ 
 					$("#messageboard h1").html("Sad weekday analysis "); 
-					barPlot("chart", [data.statsad], data.ticksad);
+					barPlot("chart", [data.statsad], data.ticksad, [{label:'Sad'}]);
 				}
 				else if(emotion == "weekdaysadhappy")
 				{
 					$("#messageboard h1").html("Weekday Sad vs. Happy"); 
-					barPlot("chart",[data.statsad,data.stathappy],data.ticksad);
+					barPlot("chart",[data.statsad,data.stathappy],data.ticksad, [{label:'Sad'},{label:'Happy'}]);
 				}
 				else 				
 					{ 
 					$("#messageboard h1").html("Sad vs. Happy ");
-					piePlot("chart",[['Happy', data.happy],['Sad', data.sad ]]); 
+					piePlot("chart",[['Happy', (100*data.happy)/(data.happy+data.sad)],['Sad', (100*data.sad)/(data.happy+data.sad) ]]); 
 					}
 		});
 	}
@@ -166,7 +166,7 @@
 	  );
 	}
 
-	function barPlot(divid, arrayValues, arrayElementNames)
+	function barPlot(divid, arrayValues, arrayElementNames,seriesinput)
 	{
 		$("#"+divid).html("");
 		var plot1 = $.jqplot(divid, arrayValues, {
@@ -176,12 +176,13 @@
 		        renderer:$.jqplot.BarRenderer,
 		        pointLabels: { show: true }
 		    },
-/*		    legend: {
+		    legend: {
 		        show: true,
 		        location: 'e',
 		        placement: 'outside'
 		    },   
-*/
+
+		    series:seriesinput,
 		    axes: {
 		        xaxis: {
 		            renderer: $.jqplot.CategoryAxisRenderer,

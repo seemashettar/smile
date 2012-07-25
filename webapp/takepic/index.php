@@ -22,7 +22,7 @@ if(!isset($_SESSION["login"])) header("Location: ../");
 
 <div id="topBar">
     <h1>Smile Project</h1>
-
+    <div style='float:right;margin-right:80px;margin-top:40px;font-size:30px;'>You are <span id="emotion"></span>!</div>
 </div>
 
 <div id="photos"></div>
@@ -43,26 +43,29 @@ if(!isset($_SESSION["login"])) header("Location: ../");
     
     <span class="settings"></span>
 </div>
+<!--
 <div style="display:none;">
 	<div id="inline2">
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. &nbsp;&nbsp; <a href="javascript:;" onclick="$.fancybox.close();">Close</a>
+			You are <span id="emotion"></span>! &nbsp;&nbsp; <a href="javascript:;" onclick="$.fancybox.close();">Close</a>
 		</p>
 	</div>
 </div>
-<div id="happy" class="fancybox" href="#inline2" style="display:none;">Keep smiling</div>
-<div id="sad" style="display:false;">You are sad, smile...!</div>
+<div id="emotionmessage" class="fancybox" href="#inline2" style="display:none;"></div>
+-->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script src="assets/fancybox/jquery.easing-1.3.pack.js"></script>
 <script src="assets/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script src="assets/webcam/webcam.js"></script>
 <script src="assets/js/script.js"></script>
+<!--
 <script>
-$('#happy').fancybox({
+$('#emotionmessage').fancybox({
 		'modal' : true,
 	});
 //$('#happy').click();
 </script>
+-->s
 </body>
 </html>

@@ -8,7 +8,7 @@ if( isset($_POST['signup']) ){
 	$password = $_POST['password'];
 	$password_encrypt = md5(trim($password));
 
-	$query = "INSERT INTO tavakoli.smile_person (username,password, date) VALUES (";
+	$query = "INSERT INTO $db_name.smile_person (username,password, date) VALUES (";
 	$query .= "'".mysqli_real_escape_string($link, $_POST['username'])."',";
 	$query .= "'".mysqli_real_escape_string($link, $password_encrypt)."',";			
 	$query .= "'".date("Y-m-d H:i:s")."'";
@@ -18,7 +18,7 @@ if( isset($_POST['signup']) ){
 	header("Location: index.php");
 }
 if( isset($_POST['login']) ){
-	$query = "SELECT * FROM tavakoli.smile_person WHERE username = '".$_POST['username']."'";	
+	$query = "SELECT * FROM $db_name.smile_person WHERE username = '".$_POST['username']."'";	
 	$result = mysqli_query($link, $query);
 	$result_fetch =  mysqli_fetch_assoc($result);
 	$password_fromDb = $result_fetch['password'];
@@ -42,7 +42,7 @@ if( isset($_GET['emotion']) ){
 	$result = 0;
 	if(!isset($_SESSION["login"]["id"])) die("{'message':'authorization error'}");
 
-	$query = "INSERT INTO tavakoli.smile_profile (username,happy, timestamp) VALUES (";
+	$query = "INSERT INTO $db_name.smile_profile (username,happy, timestamp) VALUES (";
 	$query .= "'".mysqli_real_escape_string($link, $_SESSION["login"]["username"])."',";
 	if(trim($_GET['emotion'])=="happy")
 	{
@@ -61,17 +61,17 @@ if( isset($_GET['emotion']) ){
 
 if ( isset( $_GET['stats'] ) ) 
 {
-	$query = "SELECT COUNT(happy) as happy FROM `tavakoli`.`smile_profile` WHERE happy=1;";	
+	$query = "SELECT COUNT(happy) as happy FROM `$db_name`.`smile_profile` WHERE happy=1;";	
 	$result = mysqli_query($link, $query);
 	$result_fetch =  mysqli_fetch_assoc($result);
 	$happy = $result_fetch['happy'];
 
-	$query = "SELECT COUNT(happy) as happy FROM `tavakoli`.`smile_profile` WHERE happy=0;";	
+	$query = "SELECT COUNT(happy) as sad FROM `$db_name`.`smile_profile` WHERE happy=0;";	
 	$result = mysqli_query($link, $query);
 	$result_fetch =  mysqli_fetch_assoc($result);
-	$sad = $result_fetch['happy'];
+	$sad = $result_fetch['sad'];
 
-	$query = "SELECT DAYNAME( `timestamp` ) AS edate, COUNT(*) as count FROM `tavakoli`.`smile_profile` WHERE happy=0 GROUP BY edate;";	
+	$query = "SELECT DAYNAME( `timestamp` ) AS edate, COUNT(*) as count FROM `$db_name`.`smile_profile` WHERE happy=0 GROUP BY edate;";	
 	$result = mysqli_query($link, $query);
 	$ticksSad = "[";
 	$statsSad = "[";
@@ -85,7 +85,7 @@ if ( isset( $_GET['stats'] ) )
 	$statsSad = substr($statsSad,0,-1);
 	$statsSad .= "]";
 
-	$query = "SELECT DAYNAME( `timestamp` ) AS edate, COUNT(*) as count FROM `tavakoli`.`smile_profile` WHERE happy=1 GROUP BY edate;";	
+	$query = "SELECT DAYNAME( `timestamp` ) AS edate, COUNT(*) as count FROM `$db_name`.`smile_profile` WHERE happy=1 GROUP BY edate;";	
 	$result = mysqli_query($link, $query);
 	$ticksHappy = "[";
 	$statsHappy = "[";
@@ -103,7 +103,7 @@ if ( isset( $_GET['stats'] ) )
 
 }
 
-
+/*
 if (isset($_POST['profile_upload_pic'])) {
 	if(!isset($_SESSION["login"]["id"]))
 		header("Location: index.php");
@@ -225,6 +225,7 @@ if( isset($_POST['blogpost']) )
 
 	header ('Location: blog.php');
 }
+*/
 // function closeredirect($location){
 // }
 mysqli_close($link);

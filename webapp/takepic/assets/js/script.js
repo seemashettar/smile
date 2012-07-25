@@ -141,6 +141,8 @@ $(document).ready(function(){
                 try
                 {
                     console.log(item.tags[0].attributes.mood.value);
+		    $('#emotion').html(item.tags[0].attributes.mood.value);
+		    //$('#emotionmessage').click();
                     saveFaceOutput(item.tags[0].attributes.mood.value);
                 }
                 catch(error)
