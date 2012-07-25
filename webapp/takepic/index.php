@@ -47,7 +47,7 @@ if(!isset($_SESSION["login"])) header("Location: ../");
 <div style="display:none;">
 	<div id="inline2">
 		<p>
-			You are <span id="emotion"></span>! &nbsp;&nbsp; <a href="javascript:;" onclick="$.fancybox.close();">Close</a>
+			<img src="http://img1.coolspacetricks.com/images/commentgraphics/hello/84268.gif" alt="some_text"/> You are <span id="emotion"></span>! &nbsp;&nbsp; <a href="javascript:;" onclick="$.fancybox.close();">Close</a>
 		</p>
 	</div>
 </div>
