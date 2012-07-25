@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://pspi.magic.ubc.ca application.xsd">
            
     <applicationName>Smile App</applicationName>
-    <applicationShortName>hello</applicationShortName>
+    <applicationShortName>smile</applicationShortName>
     <applicationImageURL>http://localhost/smile/large/smile.png</applicationImageURL>
     <minumumIdleTime>20</minumumIdleTime>
     
