@@ -1,8 +1,10 @@
 <?php
 // Set your return content type
 //header('Content-type: application/xml');
+$ini_array = parse_ini_file("../settings.ini");
+$osgibroker_url = $ini_array['server_url'];
 
-$daurl = 'http://localhost:8800/osgibroker/subscribe?topic=smile&clientID=smile';
+$daurl = "$osgibroker_url/osgibroker/subscribe?topic=smile&clientID=smile";
 
 // Get that website's content
 $handle = fopen($daurl, "r");
