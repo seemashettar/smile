@@ -158,7 +158,7 @@ $(document).ready(function(){
     {    
 		$.getJSON("../process.php",
 		  {
-            emotion : emotion
+            		emotion : emotion
 		  },
 		  function(data) {
 		    console.log(data);
