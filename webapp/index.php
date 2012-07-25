@@ -14,8 +14,6 @@ if(!isset($_SESSION["login"])){
         <div class="span5">
 		<div class="hero-unit">
 			<h1>Welcome!</h1>
-			<p>This is Yourbook social network!</p>
-			<p><a class="btn btn-primary btn-large">Go to Profile »</a></p>
 		</div>
         </div>
         <div class="span5">
@@ -34,7 +32,7 @@ if(!isset($_SESSION["login"])){
 else{ 
 ?>
 		<div class="hero-unit">
-			<h1>Welcome <?php echo $_SESSION["login"]["username"] ?>!</h1>
+			<h1>Welcome <?php echo $_SESSION["login"]["username"] ?>! Start <a href='takepic/'>taking pictures</a>.</h1>
 			<!-- <p>This is Yourbook social network!</p>
 			<p><a class="btn btn-primary btn-large" href="profile.php">Go to Profile »</a></p> -->
 		</div>
