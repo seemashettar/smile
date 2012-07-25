@@ -66,6 +66,6 @@ $('#emotionmessage').fancybox({
 	});
 //$('#happy').click();
 </script>
--->s
+-->
 </body>
 </html>
