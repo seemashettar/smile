@@ -55,7 +55,7 @@ if( isset($_GET['emotion']) ){
 	$query .= "'".date("Y-m-d H:i:s")."'";
 	$query .= ");";	
 	$result = mysqli_query($link, $query);
-	if(!result) echo "{'message':'error with database'}";
+	if(!$result) echo "{'message':'error with database'}";
 }
 
 
